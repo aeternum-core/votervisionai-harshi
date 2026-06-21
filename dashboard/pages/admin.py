@@ -229,7 +229,7 @@ def get_layout(lang='en'):
                     
                     html.Label(t['storage_label'], className="form-label-custom"),
                     html.Div([
-                        html.P([html.Strong(f"{t['storage_loc']}: "), f"{config.DATASET_PATH} ({t['local_storage_info']})"]),
+                        html.P([html.Strong(f"{t['storage_loc']}: "), f"data/election_data.csv ({t['local_storage_info']})"]),
                         html.P([html.Strong(f"{t['storage_shape']}: "), f"{len(data_service.df) if not data_service.df.empty else 0} {t['records_text']}"])
                     ], className="audit-box p-3 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem', 'color': '#F8FAFC'})
                 ], className="stat-card p-4 h-100")
