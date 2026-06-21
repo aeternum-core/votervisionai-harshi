@@ -365,3 +365,87 @@ body {
     line-height: 28px !important;
 }
 
+/* --- RESPONSIVE LAYOUT MEDIA QUERIES --- */
+
+/* Small Devices / Tablets (max-width: 991.98px) */
+@media (max-width: 991.98px) {
+    #page-content {
+        padding: 1.25rem !important;
+    }
+}
+
+/* Mobile Devices (max-width: 767.98px) */
+@media (max-width: 767.98px) {
+    /* Sidebar mobile overrides */
+    .sidebar {
+        height: auto !important;
+        min-height: auto !important;
+        position: relative !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--border-color) !important;
+        padding: 1rem !important;
+    }
+    
+    .sidebar-subtitle {
+        margin-bottom: 0 !important;
+    }
+
+    /* Compact accessibility bar */
+    .accessibility-bar {
+        padding: 0.5rem 1rem !important;
+        justify-content: center !important;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.75rem !important;
+    }
+
+    .lang-selector {
+        width: 100px !important;
+    }
+
+    /* Adjust page-content layout */
+    #page-content {
+        padding: 1rem !important;
+        min-height: auto !important;
+    }
+
+    /* Make sure cards adjust paddings */
+    .stat-card {
+        padding: 1rem !important;
+    }
+
+    /* Adjust typography for narrow displays */
+    h3, .h3 {
+        font-size: 1.4rem !important;
+        text-align: center;
+    }
+    
+    h5, .h5 {
+        font-size: 1.1rem !important;
+    }
+
+    p {
+        font-size: 0.85rem !important;
+        text-align: center;
+    }
+
+    .card-value-custom {
+        font-size: 1.5rem !important;
+    }
+
+    /* Make tables responsive and fit on narrow screens */
+    .table-custom {
+        font-size: 0.75rem !important;
+    }
+
+    .table-custom th, .table-custom td {
+        padding: 0.5rem !important;
+    }
+    
+    /* Vercel or Bootstrap toggler border color */
+    .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+}
+
+

@@ -52,35 +52,6 @@ accessibility_bar = html.Div([
     ], className="d-flex align-items-center")
 ], className="accessibility-bar")
 
-# Sidebar navigation layout
-def get_sidebar_layout(lang='en'):
-    texts = config.LANGUAGES.get(lang, config.LANGUAGES['en'])
-    
-    return html.Div([
-        html.Div([
-            html.Div(texts['title'], className="sidebar-title"),
-            html.Div(texts['subtitle'], className="sidebar-subtitle"),
-        ], className="px-2"),
-        
-        html.Hr(style={'borderColor': '#1E293B'}),
-        
-        dbc.Nav([
-            dbc.NavLink([html.I(className="fa-solid fa-gauge me-2"), texts['command_center']], href="/", active="exact", id="nav-home"),
-            dbc.NavLink([html.I(className="fa-solid fa-chart-line me-2"), texts['live_turnout']], href="/analytics", active="exact", id="nav-analytics"),
-            dbc.NavLink([html.I(className="fa-solid fa-brain me-2"), texts['prediction_center']], href="/prediction", active="exact", id="nav-prediction"),
-            dbc.NavLink([html.I(className="fa-solid fa-triangle-exclamation me-2"), texts['risk_intel']], href="/risk", active="exact", id="nav-risk"),
-            dbc.NavLink([html.I(className="fa-solid fa-sliders me-2"), texts['what_if']], href="/simulator", active="exact", id="nav-simulator"),
-            dbc.NavLink([html.I(className="fa-solid fa-bullhorn me-2"), texts['recommendations']], href="/planner", active="exact", id="nav-planner"),
-            dbc.NavLink([html.I(className="fa-solid fa-gears me-2"), texts['admin_panel']], href="/admin", active="exact", id="nav-admin"),
-            dbc.NavLink([html.I(className="fa-solid fa-circle-info me-2"), texts['about']], href="/about", active="exact", id="nav-about"),
-        ], vertical=True, pills=True, className="flex-column flex-nowrap"),
-        
-        html.Div([
-            html.Hr(style={'borderColor': '#1E293B'}),
-            html.Div("v1.0.0 (Command Room)", style={'fontSize': '0.7rem', 'color': '#64748B', 'textAlign': 'center'})
-        ], className="mt-auto px-2")
-    ], className="sidebar")
-
 # Master layout with location and state store
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -89,8 +60,39 @@ app.layout = html.Div([
     
     dbc.Container([
         dbc.Row([
-            # Sidebar column
-            dbc.Col(id='sidebar-column', width=12, md=3, lg=2, style={'padding': '0', 'zIndex': '100'}),
+            # Collapsible Sidebar Column
+            dbc.Col([
+                html.Div([
+                    # Sidebar Title Header & Hamburger Button
+                    html.Div([
+                        html.Div(id='sidebar-title-container', className="flex-grow-1"),
+                        
+                        # Mobile menu hamburger toggler
+                        dbc.Button(
+                            html.I(className="fa-solid fa-bars"), 
+                            id="sidebar-toggler", 
+                            color="link", 
+                            className="d-block d-md-none text-white p-0 fs-4",
+                            style={"outline": "none", "boxShadow": "none", "textDecoration": "none"}
+                        )
+                    ], className="d-flex align-items-center justify-content-between w-100"),
+                    
+                    # Collapsible Nav links
+                    dbc.Collapse(
+                        html.Div([
+                            html.Hr(style={'borderColor': '#1E293B'}),
+                            html.Div(id='sidebar-nav-container'),
+                            html.Div([
+                                html.Hr(style={'borderColor': '#1E293B'}),
+                                html.Div("v1.0.0 (Command Room)", style={'fontSize': '0.7rem', 'color': '#64748B', 'textAlign': 'center'})
+                            ], className="mt-auto px-2 pt-4")
+                        ], className="d-flex flex-column h-100 w-100"),
+                        id="sidebar-collapse",
+                        is_open=False,
+                        className="d-md-block w-100"
+                    )
+                ], className="sidebar")
+            ], id='sidebar-column', width=12, md=3, lg=2, style={'padding': '0', 'zIndex': '100'}),
             
             # Content column
             dbc.Col([
@@ -129,13 +131,50 @@ def toggle_contrast(n_clicks, current_mode):
         style = {}
     return new_mode, style
 
-# Callback to update sidebar links and layout based on selected language
+# Callback to update sidebar contents based on active language selection
 @app.callback(
-    Output('sidebar-column', 'children'),
+    Output('sidebar-title-container', 'children'),
+    Output('sidebar-nav-container', 'children'),
     Input('lang-store', 'data')
 )
-def update_sidebar(lang):
-    return get_sidebar_layout(lang)
+def update_sidebar_contents(lang):
+    texts = config.LANGUAGES.get(lang, config.LANGUAGES['en'])
+    
+    title_section = html.Div([
+        html.Div(texts['title'], className="sidebar-title"),
+        html.Div(texts['subtitle'], className="sidebar-subtitle"),
+    ], className="px-2")
+    
+    nav_section = dbc.Nav([
+        dbc.NavLink([html.I(className="fa-solid fa-gauge me-2"), texts['command_center']], href="/", active="exact", id="nav-home"),
+        dbc.NavLink([html.I(className="fa-solid fa-chart-line me-2"), texts['live_turnout']], href="/analytics", active="exact", id="nav-analytics"),
+        dbc.NavLink([html.I(className="fa-solid fa-brain me-2"), texts['prediction_center']], href="/prediction", active="exact", id="nav-prediction"),
+        dbc.NavLink([html.I(className="fa-solid fa-triangle-exclamation me-2"), texts['risk_intel']], href="/risk", active="exact", id="nav-risk"),
+        dbc.NavLink([html.I(className="fa-solid fa-sliders me-2"), texts['what_if']], href="/simulator", active="exact", id="nav-simulator"),
+        dbc.NavLink([html.I(className="fa-solid fa-bullhorn me-2"), texts['recommendations']], href="/planner", active="exact", id="nav-planner"),
+        dbc.NavLink([html.I(className="fa-solid fa-gears me-2"), texts['admin_panel']], href="/admin", active="exact", id="nav-admin"),
+        dbc.NavLink([html.I(className="fa-solid fa-circle-info me-2"), texts['about']], href="/about", active="exact", id="nav-about"),
+    ], vertical=True, pills=True, className="flex-column flex-nowrap")
+    
+    return title_section, nav_section
+
+# Unified Callback to handle sidebar collapsing/expanding state
+from dash import ctx
+@app.callback(
+    Output("sidebar-collapse", "is_open"),
+    Input("sidebar-toggler", "n_clicks"),
+    Input("url", "pathname"),
+    State("sidebar-collapse", "is_open"),
+    prevent_initial_call=True
+)
+def handle_sidebar_collapse(n_clicks, pathname, is_open):
+    triggered_id = ctx.triggered_id
+    if triggered_id == "sidebar-toggler":
+        return not is_open
+    elif triggered_id == "url":
+        return False
+    return is_open
+
 
 # Main Routing Callback
 @app.callback(

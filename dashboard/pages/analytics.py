@@ -98,13 +98,13 @@ def get_layout(lang='en'):
         dbc.Row([
             dbc.Col([
                 html.Div([
-                    dcc.Graph(id='ranking-plot', config={'displayModeBar': False})
+                    dcc.Graph(id='ranking-plot', config={'displayModeBar': False, 'responsive': True})
                 ], className="stat-card mb-4")
             ], xl=8, lg=7, md=12),
             
             dbc.Col([
                 html.Div([
-                    dcc.Graph(id='momentum-plot', config={'displayModeBar': False})
+                    dcc.Graph(id='momentum-plot', config={'displayModeBar': False, 'responsive': True})
                 ], className="stat-card mb-4")
             ], xl=4, lg=5, md=12)
         ]),

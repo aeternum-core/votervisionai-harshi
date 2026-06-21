@@ -193,7 +193,7 @@ def get_layout(lang='en'):
         dbc.Row([
             dbc.Col([
                 html.Div([
-                    dcc.Graph(figure=progression_fig, config={'displayModeBar': False})
+                    dcc.Graph(figure=progression_fig, config={'displayModeBar': False, 'responsive': True})
                 ], className="stat-card mb-4")
             ], xl=8, lg=7, md=12),
             
@@ -208,7 +208,7 @@ def get_layout(lang='en'):
         dbc.Row([
             dbc.Col([
                 html.Div([
-                    dcc.Graph(figure=risk_fig, config={'displayModeBar': False})
+                    dcc.Graph(figure=risk_fig, config={'displayModeBar': False, 'responsive': True})
                 ], className="stat-card mb-4")
             ], xl=4, lg=5, md=12),
             
