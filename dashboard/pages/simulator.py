@@ -12,7 +12,125 @@ from services.data_service import DataService
 
 data_service = DataService()
 
+PAGE_TRANSLATIONS = {
+    'en': {
+        'title': "What-If Operational Scenario Lab",
+        'subtitle': "Simulate variations in weather conditions and test intervention policies to forecast turnout changes.",
+        'state_lbl': "Select State",
+        'district_lbl': "Select District",
+        'constituency_lbl': "Select Constituency Cell",
+        'scenarios_header': "Election Scenario Library™",
+        'scenarios_rain': "🌧️ Torrential Rain / Extreme Heat",
+        'scenarios_campaign': "📢 Intense Awareness Drive",
+        'scenarios_holiday': "📅 Holiday Drag Effect",
+        'scenarios_midweek': "🚀 Midweek Transit Mobilization",
+        'adjustments_header': "Simulate Operational Adjustments",
+        'awareness_slider': "Awareness Campaign Boost (0% to +30%)",
+        'transport_slider': "Transport Shuttle Access Improvement (0% to +30%)",
+        'weather_slider': "Weather Severity Adjustment (Rain/Heat) (-30% to +10%)",
+        'holiday_slider': "Holiday Proximity Impact Toggle",
+        'holiday_keep': "No Proximity Weekend (No Change)",
+        'holiday_apply': "Simulate Near 3-Day Weekend (Apply Holiday Drag)",
+        'holiday_remove': "Simulate Isolated Midweek Election (Apply Boost)",
+        'btn_reset': "Reset to Region Baseline",
+        'delta_header': "Simulation Forecast Delta",
+        'base_forecast': "Baseline Forecast",
+        'sim_forecast': "Simulated Forecast",
+        'est_impact': "Estimated Impact",
+        'proj_change': "Projected change",
+        'awareness_score': "Awareness Score",
+        'transport_score': "Transport Score",
+        'weather_score': "Weather Score",
+        'chart_title': "Voter Turnout Simulation Comparison",
+        'chart_y_title': "Turnout Rate (%)",
+        'lbl_historical': "Historical Baseline",
+        'lbl_base_forecast': "AI Base Forecast",
+        'lbl_sim_forecast': "Simulated Forecast",
+        'high': "High",
+        'medium': "Medium",
+        'low': "Low",
+        'n_a': "N/A"
+    },
+    'hi': {
+        'title': "व्हाट-इफ ऑपरेशनल सिनेरियो लैब",
+        'subtitle': "मतदान में होने वाले परिवर्तनों का पूर्वानुमान लगाने के लिए मौसम की स्थिति में बदलाव का अनुकरण करें और हस्तक्षेप नीतियों का परीक्षण करें।",
+        'state_lbl': "राज्य चुनें",
+        'district_lbl': "जिला चुनें",
+        'constituency_lbl': "निर्वाचन क्षेत्र चुनें",
+        'scenarios_header': "चुनाव परिदृश्य लाइब्रेरी™",
+        'scenarios_rain': "🌧️ मूसलाधार बारिश / अत्यधिक गर्मी",
+        'scenarios_campaign': "📢 गहन जागरूकता अभियान",
+        'scenarios_holiday': "📅 छुट्टी का खिंचाव प्रभाव",
+        'scenarios_midweek': "🚀 मध्य सप्ताह परिवहन गतिशीलता",
+        'adjustments_header': "परिचालन समायोजन का अनुकरण करें",
+        'awareness_slider': "जागरूकता अभियान में वृद्धि (0% से +30%)",
+        'transport_slider': "परिवहन शटल पहुंच में सुधार (0% से +30%)",
+        'weather_slider': "मौसम की तीव्रता समायोजन (बारिश/गर्मी) (-30% से +10%)",
+        'holiday_slider': "छुट्टी की निकटता प्रभाव टॉगल",
+        'holiday_keep': "कोई निकटता सप्ताहांत नहीं (कोई बदलाव नहीं)",
+        'holiday_apply': "3-दिवसीय लंबे सप्ताहांत का अनुकरण करें (छुट्टी का प्रभाव लागू करें)",
+        'holiday_remove': "अलग मध्य सप्ताह चुनाव का अनुकरण करें (बढ़ावा लागू करें)",
+        'btn_reset': "क्षेत्र के आधारभूत मूल्य पर रीसेट करें",
+        'delta_header': "सिमुलेशन पूर्वानुमान अंतर (Delta)",
+        'base_forecast': "आधारभूत पूर्वानुमान",
+        'sim_forecast': "सिम्युलेटेड पूर्वानुमान",
+        'est_impact': "अनुमानित प्रभाव",
+        'proj_change': "अनुमानित परिवर्तन",
+        'awareness_score': "जागरूकता स्कोर",
+        'transport_score': "परिवहन स्कोर",
+        'weather_score': "मौसम स्कोर",
+        'chart_title': "मतदाता मतदान सिमुलेशन तुलना",
+        'chart_y_title': "मतदान दर (%)",
+        'lbl_historical': "ऐतिहासिक आधारभूत रेखा",
+        'lbl_base_forecast': "एआई आधारभूत पूर्वानुमान",
+        'lbl_sim_forecast': "सिम्युलेटेड पूर्वानुमान",
+        'high': "उच्च",
+        'medium': "मध्यम",
+        'low': "निम्न",
+        'n_a': "लागू नहीं"
+    },
+    'kn': {
+        'title': "ವಾಟ್-ಇಫ್ ಕಾರ್ಯಾಚರಣೆಯ ಸಿಮ್ಯುಲೇಶನ್ ಲ್ಯಾಬ್",
+        'subtitle': "ಮತದಾನದ ಬದಲಾವಣೆಗಳನ್ನು ಮುನ್ಸೂಚಿಸಲು ಹವಾಮಾನ ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿನ ವ್ಯತ್ಯಾಸಗಳನ್ನು ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ ಮತ್ತು ನೀತಿಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ.",
+        'state_lbl': "ರಾಜ್ಯವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        'district_lbl': "ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        'constituency_lbl': "ಮತಕ್ಷೇತ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ",
+        'scenarios_header': "ಚುನಾವಣಾ ಸನ್ನಿವೇಶ ಲೈಬ್ರರಿ™",
+        'scenarios_rain': "🌧️ ವಿಪರೀತ ಮಳೆ / ತೀವ್ರ ಬಿಸಿಲು",
+        'scenarios_campaign': "📢 ತೀವ್ರ ಜಾಗೃತಿ ಅಭಿಯಾನ",
+        'scenarios_holiday': "📅 ರಜಾದಿನದ ಡ್ರ್ಯಾಗ್ ಪರಿಣಾಮ",
+        'scenarios_midweek': "🚀 ವಾರದ ಮಧ್ಯದ ಸಾರಿಗೆ ಸಜ್ಜುಗೊಳಿಸುವಿಕೆ",
+        'adjustments_header': "ಕಾರ್ಯಾಚರಣೆಯ ಹೊಂದಾಣಿಕೆಗಳನ್ನು ಸಿಮ್ಯುಲೇಟ್ ಮಾಡಿ",
+        'awareness_slider': "ಜಾಗೃತಿ ಅಭಿಯಾನದ ಹೆಚ್ಚಳ (0% ರಿಂದ +30%)",
+        'transport_slider': "ಸಾರಿಗೆ ಶಟಲ್ ಪ್ರವೇಶದ ಸುಧಾರಣೆ (0% ರಿಂದ +30%)",
+        'weather_slider': "ಹವಾಮಾನ ತೀವ್ರತೆಯ ಹೊಂದಾಣಿಕೆ (ಮಳೆ/ಬಿಸಿಲು) (-30% ರಿಂದ +10%)",
+        'holiday_slider': "ರಜಾದಿನದ ಸಾಮೀಪ್ಯದ ಪ್ರಭಾವದ ಟಾಗಲ್",
+        'holiday_keep': "ರಜೆಯಿಲ್ಲದ ವಾರಾಂತ್ಯ (ಬದಲಾವಣೆ ಇಲ್ಲ)",
+        'holiday_apply': "3 ದಿನಗಳ ವಾರಾಂತ್ಯದ ಸಿಮ್ಯುಲೇಶನ್ (ರಜಾದಿನದ ಡ್ರ್ಯಾಗ್ ಅನ್ವಯಿಸಿ)",
+        'holiday_remove': "ಪ್ರತ್ಯೇಕ ವಾರದ ಮಧ್ಯದ ಚುನಾವಣೆಯ ಸಿಮ್ಯುಲೇಶನ್ (ಬೂಸ್ಟ್ ಅನ್ವಯಿಸಿ)",
+        'btn_reset': "ಪ್ರದೇಶದ ಬೇಸ್‌ಲೈನ್‌ಗೆ ಮರುಹೊಂದಿಸಿ",
+        'delta_header': "ಸಿಮ್ಯುಲೇಶನ್ ಮುನ್ಸೂಚನೆಯ ವ್ಯತ್ಯಾಸ",
+        'base_forecast': "ಬೇಸ್‌ಲೈನ್ ಮುನ್ಸೂಚನೆ",
+        'sim_forecast': "ಸಿಮ್ಯುಲೇಟೆಡ್ ಮುನ್ಸೂಚನೆ",
+        'est_impact': "ನಿರೀಕ್ಷಿತ ಪ್ರಭಾವ",
+        'proj_change': "ಯೋಜಿತ ಬದಲಾವಣೆ",
+        'awareness_score': "ಜಾಗೃತಿ ಸ್ಕೋರ್",
+        'transport_score': "ಸಾರಿಗೆ ಸ್ಕೋರ್",
+        'weather_score': "ಹವಾಮಾನ ಸ್ಕೋರ್",
+        'chart_title': "ಮತದಾರರ ಮತದಾನದ ಸಿಮ್ಯುಲೇಶನ್ ಹೋಲಿಕೆ",
+        'chart_y_title': "ಮತದಾನದ ಪ್ರಮಾಣ (%)",
+        'lbl_historical': "ಐತಿಹಾಸಿಕ ಬೇಸ್‌ಲೈನ್",
+        'lbl_base_forecast': "ಎಐ ಬೇಸ್ ಮುನ್ಸೂಚನೆ",
+        'lbl_sim_forecast': "ಸಿಮ್ಯುಲೇಟೆಡ್ ಮುನ್ಸೂಚನೆ",
+        'high': "ಹೆಚ್ಚು",
+        'medium': "ಮಧ್ಯಮ",
+        'low': "ಕಡಿಮೆ",
+        'n_a': "ಲಭ್ಯವಿಲ್ಲ"
+    }
+}
+
 def get_layout(lang='en'):
+    t = PAGE_TRANSLATIONS.get(lang, PAGE_TRANSLATIONS['en'])
     states = data_service.get_states()
     state_options = [{'label': s, 'value': s} for s in states]
     
@@ -20,7 +138,7 @@ def get_layout(lang='en'):
     selector_card = dbc.Card([
         dbc.Row([
             dbc.Col([
-                html.Label("Select State", className="form-label-custom"),
+                html.Label(t['state_lbl'], className="form-label-custom"),
                 dcc.Dropdown(
                     id='sim-state-select',
                     options=state_options,
@@ -30,7 +148,7 @@ def get_layout(lang='en'):
                 )
             ], md=4),
             dbc.Col([
-                html.Label("Select District", className="form-label-custom"),
+                html.Label(t['district_lbl'], className="form-label-custom"),
                 dcc.Dropdown(
                     id='sim-district-select',
                     options=[],
@@ -39,7 +157,7 @@ def get_layout(lang='en'):
                 )
             ], md=4),
             dbc.Col([
-                html.Label("Select Constituency Cell", className="form-label-custom"),
+                html.Label(t['constituency_lbl'], className="form-label-custom"),
                 dcc.Dropdown(
                     id='sim-constituency-select',
                     options=[],
@@ -52,45 +170,45 @@ def get_layout(lang='en'):
 
     # Prebuilt Scenario Library Card
     scenario_library = dbc.Card([
-        html.H6("Election Scenario Library™", className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC', 'fontSize': '0.9rem'}),
+        html.H6(t['scenarios_header'], className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC', 'fontSize': '0.9rem'}),
         html.Div([
-            dbc.Button("🌧️ Torrential Rain / Extreme Heat", id='preset-rain', color="danger", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
-            dbc.Button("📢 Intense Awareness Drive", id='preset-campaign-boost', color="success", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
-            dbc.Button("📅 Holiday Drag Effect", id='preset-holiday-drag', color="warning", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
-            dbc.Button("🚀 Midweek Transit Mobilization", id='preset-midweek', color="info", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'})
+            dbc.Button(t['scenarios_rain'], id='preset-rain', color="danger", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
+            dbc.Button(t['scenarios_campaign'], id='preset-campaign-boost', color="success", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
+            dbc.Button(t['scenarios_holiday'], id='preset-holiday-drag', color="warning", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'}),
+            dbc.Button(t['scenarios_midweek'], id='preset-midweek', color="info", size="sm", className="me-2 mb-2", style={'fontSize': '0.75rem', 'fontWeight': '500'})
         ], className="d-flex flex-wrap")
     ], className="stat-card p-3 mb-3")
 
     # Sliders Card
     sliders_card = dbc.Card([
-        html.H5("Simulate Operational Adjustments", className="mb-4", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+        html.H5(t['adjustments_header'], className="mb-4", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
         
         html.Div([
-            html.Label("Awareness Campaign Boost (0% to +30%)", className="form-label-custom"),
+            html.Label(t['awareness_slider'], className="form-label-custom"),
             dcc.Slider(0, 30, 1, value=0, id='sim-boost-awareness', 
                        marks={0: '0', 10: '+10%', 20: '+20%', 30: '+30%'}, className="mb-4")
         ]),
         
         html.Div([
-            html.Label("Transport Shuttle Access Improvement (0% to +30%)", className="form-label-custom"),
+            html.Label(t['transport_slider'], className="form-label-custom"),
             dcc.Slider(0, 30, 1, value=0, id='sim-boost-transport', 
                        marks={0: '0', 10: '+10%', 20: '+20%', 30: '+30%'}, className="mb-4")
         ]),
         
         html.Div([
-            html.Label("Weather Severity Adjustment (Rain/Heat) (-30% to +10%)", className="form-label-custom"),
+            html.Label(t['weather_slider'], className="form-label-custom"),
             dcc.Slider(-30, 10, 1, value=0, id='sim-adjust-weather', 
                        marks={-30: 'Extreme', -15: 'Harsh', 0: 'Baseline', 10: 'Pleasant'}, className="mb-4")
         ]),
         
         html.Div([
-            html.Label("Holiday Proximity Impact Toggle", className="form-label-custom"),
+            html.Label(t['holiday_slider'], className="form-label-custom"),
             dcc.Dropdown(
                 id='sim-adjust-holiday',
                 options=[
-                    {'label': 'No Proximity Weekend (No Change)', 'value': 'keep'},
-                    {'label': 'Simulate Near 3-Day Weekend (Apply Holiday Drag)', 'value': 'apply_holiday'},
-                    {'label': 'Simulate Isolated Midweek Election (Apply Boost)', 'value': 'remove_holiday'}
+                    {'label': t['holiday_keep'], 'value': 'keep'},
+                    {'label': t['holiday_apply'], 'value': 'apply_holiday'},
+                    {'label': t['holiday_remove'], 'value': 'remove_holiday'}
                 ],
                 value='keep',
                 clearable=False,
@@ -98,32 +216,32 @@ def get_layout(lang='en'):
             )
         ]),
         
-        dbc.Button("Reset to Region Baseline", id='sim-reset-btn', color="secondary", className="w-100", style={'fontWeight': '600'})
+        dbc.Button(t['btn_reset'], id='sim-reset-btn', color="secondary", className="w-100", style={'fontWeight': '600'})
     ], className="stat-card p-4 overflow-visible")
 
     # Outputs card
     outputs_panel = html.Div([
         # Comparison Gauges and metrics
         dbc.Card([
-            html.H5("Simulation Forecast Delta", className="mb-4", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+            html.H5(t['delta_header'], className="mb-4", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
             
             dbc.Row([
                 dbc.Col([
-                    html.Div("Baseline Forecast", style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
+                    html.Div(t['base_forecast'], style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-base-turnout', style={'fontSize': '2rem', 'fontWeight': 'bold', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-base-risk', className="badge bg-secondary", style={'fontSize': '0.75rem'})
                 ], md=4, className="text-center mb-3"),
                 
                 dbc.Col([
-                    html.Div("Simulated Forecast", style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
+                    html.Div(t['sim_forecast'], style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-new-turnout', style={'fontSize': '2.6rem', 'fontWeight': 'bold', 'color': '#60A5FA'}),
                     html.Div(id='sim-out-new-risk', className="badge bg-primary", style={'fontSize': '0.85rem'})
                 ], md=4, className="text-center border-start border-end border-secondary mb-3"),
                 
                 dbc.Col([
-                    html.Div("Estimated Impact", style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
+                    html.Div(t['est_impact'], style={'fontSize': '0.85rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-delta', style={'fontSize': '2.2rem', 'fontWeight': 'bold', 'color': '#22C55E'}),
-                    html.Div("Projected change", style={'fontSize': '0.75rem', 'color': '#94A3B8'})
+                    html.Div(t['proj_change'], style={'fontSize': '0.75rem', 'color': '#94A3B8'})
                 ], md=4, className="text-center mb-3")
             ], className="align-items-center mb-3"),
             
@@ -132,15 +250,15 @@ def get_layout(lang='en'):
             # Sub-indicators
             dbc.Row([
                 dbc.Col([
-                    html.Div("Awareness Score", style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
+                    html.Div(t['awareness_score'], style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-awareness-val', style={'fontWeight': 'bold', 'color': '#F8FAFC'})
                 ], xs=4, className="text-center"),
                 dbc.Col([
-                    html.Div("Transport Score", style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
+                    html.Div(t['transport_score'], style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-transport-val', style={'fontWeight': 'bold', 'color': '#F8FAFC'})
                 ], xs=4, className="text-center"),
                 dbc.Col([
-                    html.Div("Weather Score", style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
+                    html.Div(t['weather_score'], style={'fontSize': '0.75rem', 'color': '#94A3B8'}),
                     html.Div(id='sim-out-weather-val', style={'fontWeight': 'bold', 'color': '#F8FAFC'})
                 ], xs=4, className="text-center")
             ])
@@ -155,8 +273,8 @@ def get_layout(lang='en'):
     return html.Div([
         # Title
         html.Div([
-            html.H3("What-If Operational Scenario Lab", style={'fontFamily': 'Poppins', 'fontWeight': '600', 'color': '#F8FAFC'}),
-            html.P("Simulate variations in weather conditions and test intervention policies to forecast turnout changes.", style={'color': '#94A3B8'})
+            html.H3(t['title'], style={'fontFamily': 'Poppins', 'fontWeight': '600', 'color': '#F8FAFC'}),
+            html.P(t['subtitle'], style={'color': '#94A3B8'})
         ], className="mb-4"),
         
         selector_card,
@@ -249,11 +367,16 @@ def reset_simulation_sliders(n_clicks):
     Input('sim-adjust-weather', 'value'),
     Input('sim-adjust-holiday', 'value'),
     State('sim-state-select', 'value'),
-    State('sim-district-select', 'value')
+    State('sim-district-select', 'value'),
+    State('lang-store', 'data')
 )
-def run_what_if_simulation(constituency, boost_awareness, boost_transport, adjust_weather, adjust_holiday, state, district):
+def run_what_if_simulation(constituency, boost_awareness, boost_transport, adjust_weather, adjust_holiday, state, district, lang):
+    if not lang:
+        lang = 'en'
+    t = PAGE_TRANSLATIONS.get(lang, PAGE_TRANSLATIONS['en'])
+
     if not constituency:
-        return "N/A", "N/A", "badge bg-secondary", "N/A", "N/A", "badge bg-secondary", "0.00%", {'color': '#94A3B8'}, "N/A", "N/A", "N/A", go.Figure()
+        return t['n_a'], t['n_a'], "badge bg-secondary", t['n_a'], t['n_a'], "badge bg-secondary", "0.00%", {'color': '#94A3B8'}, t['n_a'], t['n_a'], t['n_a'], go.Figure()
         
     df = data_service.df
     row = df[(df['state'] == state) & (df['district'] == district) & (df['constituency'] == constituency)].iloc[0]
@@ -311,10 +434,13 @@ def run_what_if_simulation(constituency, boost_awareness, boost_transport, adjus
     delta_text = f"{'+' if delta >= 0 else ''}{delta:.2f}%"
     delta_style = {'color': '#22C55E' if delta >= 0 else '#EF4444', 'fontWeight': 'bold'}
     
-    # Risk colors
+    # Risk colors & translations
     risk_colors = {'High': 'badge bg-danger', 'Medium': 'badge bg-warning', 'Low': 'badge bg-success'}
     base_badge_class = risk_colors.get(base_risk_label, 'badge bg-secondary')
     new_badge_class = risk_colors.get(sim_risk_label, 'badge bg-secondary')
+    
+    t_base_risk = t[base_risk_label.lower()]
+    t_sim_risk = t[sim_risk_label.lower()]
     
     # Metrics display text
     aware_display = f"{base_aware} -> {sim_aware} (+{boost_awareness})" if boost_awareness > 0 else f"{base_aware}"
@@ -324,24 +450,24 @@ def run_what_if_simulation(constituency, boost_awareness, boost_transport, adjus
     # 4. Bar plot comparison
     comp_fig = go.Figure()
     comp_fig.add_trace(go.Bar(
-        x=['Historical Baseline', 'AI Base Forecast', 'Simulated Forecast'],
+        x=[t['lbl_historical'], t['lbl_base_forecast'], t['lbl_sim_forecast']],
         y=[base_hist, base_pred_turnout, sim_pred_turnout],
         marker_color=['#94A3B8', '#2563EB', '#22C55E' if delta >= 0 else '#EF4444'],
         text=[f"{base_hist}%", f"{base_pred_turnout}%", f"{sim_pred_turnout}%"],
         textposition='auto'
     ))
     comp_fig.update_layout(
-        title=dict(text="Voter Turnout Simulation Comparison", font=dict(color='#F8FAFC', family='Poppins')),
+        title=dict(text=t['chart_title'], font=dict(color='#F8FAFC', family='Poppins')),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color='#94A3B8'),
-        yaxis=dict(gridcolor='#1E293B', title="Turnout Rate (%)", range=[30, 100]),
+        yaxis=dict(gridcolor='#1E293B', title=t['chart_y_title'], range=[30, 100]),
         margin=dict(l=45, r=20, t=40, b=40)
     )
     
     return (
-        f"{base_pred_turnout}%", base_risk_label, base_badge_class,
-        f"{sim_pred_turnout}%", sim_risk_label, new_badge_class,
+        f"{base_pred_turnout}%", t_base_risk, base_badge_class,
+        f"{sim_pred_turnout}%", t_sim_risk, new_badge_class,
         delta_text, delta_style,
         aware_display, trans_display, weather_display,
         comp_fig

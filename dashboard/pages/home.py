@@ -12,13 +12,101 @@ from services.data_service import DataService
 
 data_service = DataService()
 
+PAGE_TRANSLATIONS = {
+    'en': {
+        'pulse': 'National Election Pulse™',
+        'youth': 'Youth Participation Index™',
+        'current': 'Current Turnout',
+        'predicted': 'Predicted Turnout',
+        'total_const': 'Total Constituencies',
+        'voters': 'Registered Voters',
+        'health': 'Health Score (EHS)™',
+        'alerts': 'Active Alerts',
+        'live_feed': 'Live Command Feed',
+        'matrix': 'State-Level Participation Matrix',
+        'live_progressive': 'Live progressive average',
+        'forecast': 'AI Forecast Final',
+        'states_lbl': 'Across 15 States',
+        'active_lbl': 'Active registrations',
+        'health_lbl': 'National Avg Health',
+        'alert_lbl': 'Risky constituencies',
+        'chart_progression': 'Hourly Voter Turnout Progression Trend',
+        'chart_risk': 'Voter Turnout Risk Proportions',
+        'tbl_state': 'State',
+        'tbl_registered': 'Registered Voters',
+        'tbl_current': 'Current Turnout',
+        'tbl_historical': 'Historical Avg',
+        'tbl_health': 'Health Score',
+        'tbl_status': 'Status',
+        'tbl_zones': 'High Risk Zones',
+        'no_data': 'No data available. Please generate synthetic data in Admin panel.'
+    },
+    'hi': {
+        'pulse': 'राष्ट्रीय चुनाव पल्स™',
+        'youth': 'युवा भागीदारी सूचकांक™',
+        'current': 'वर्तमान मतदान',
+        'predicted': 'पूर्वानुमानित मतदान',
+        'total_const': 'कुल निर्वाचन क्षेत्र',
+        'voters': 'पंजीकृत मतदाता',
+        'health': 'स्वास्थ्य स्कोर (EHS)™',
+        'alerts': 'सक्रिय अलर्ट',
+        'live_feed': 'लाइव कमांड फीड',
+        'matrix': 'राज्य-स्तरीय भागीदारी मैट्रिक्स',
+        'live_progressive': 'लाइव प्रगतिशील औसत',
+        'forecast': 'एआई अंतिम पूर्वानुमान',
+        'states_lbl': '15 राज्यों में',
+        'active_lbl': 'सक्रिय पंजीकरण',
+        'health_lbl': 'राष्ट्रीय औसत स्वास्थ्य',
+        'alert_lbl': 'जोखिम वाले निर्वाचन क्षेत्र',
+        'chart_progression': 'प्रति घंटा मतदान प्रगति की प्रवृत्ति',
+        'chart_risk': 'मतदान जोखिम अनुपात',
+        'tbl_state': 'राज्य',
+        'tbl_registered': 'पंजीकृत मतदाता',
+        'tbl_current': 'वर्तमान मतदान',
+        'tbl_historical': 'ऐतिहासिक औसत',
+        'tbl_health': 'स्वास्थ्य स्कोर',
+        'tbl_status': 'स्थिति',
+        'tbl_zones': 'उच्च जोखिम क्षेत्र',
+        'no_data': 'कोई डेटा उपलब्ध नहीं है। कृपया एडमिन पैनल में डेटा उत्पन्न करें।'
+    },
+    'kn': {
+        'pulse': 'ರಾಷ್ಟ್ರೀಯ ಚುನಾವಣಾ ಪಲ್ಸ್™',
+        'youth': 'ಯುವ ಭಾಗವಹಿಸುವಿಕೆ ಸೂಚ್ಯಂಕ™',
+        'current': 'ಪ್ರಸ್ತುತ ಮತದಾನ',
+        'predicted': 'ಮುನ್ಸೂಚಿತ ಮತದಾನ',
+        'total_const': 'ಒಟ್ಟು ಮತಕ್ಷೇತ್ರಗಳು',
+        'voters': 'ನೊಂದಾಯಿತ ಮತದಾರರು',
+        'health': 'ಆರೋಗ್ಯ ಸ್ಕೋರ್ (EHS)™',
+        'alerts': 'ಸಕ್ರಿಯ ಎಚ್ಚರಿಕೆಗಳು',
+        'live_feed': 'ಲೈವ್ ಕಮಾಂಡ್ ಫೀಡ್',
+        'matrix': 'ರಾಜ್ಯ ಮಟ್ಟದ ಭಾಗವಹಿಸುವಿಕೆ ಮ್ಯಾಟ್ರಿಕ್ಸ್',
+        'live_progressive': 'ಲೈವ್ ಪ್ರಗತಿಶೀಲ ಸರಾಸರಿ',
+        'forecast': 'ಎಐ ಅಂತಿಮ ಮುನ್ಸೂಚನೆ',
+        'states_lbl': '15 ರಾಜ್ಯಗಳಲ್ಲಿ',
+        'active_lbl': 'ಸಕ್ರಿಯ ನೊಂದಣಿಗಳು',
+        'health_lbl': 'ರಾಷ್ಟ್ರೀಯ ಸರಾಸರಿ ಆರೋಗ್ಯ',
+        'alert_lbl': 'ಅಪಾಯದ ಮತಕ್ಷೇತ್ರಗಳು',
+        'chart_progression': 'ಗಂಟೆಯ ಮತದಾರರ ಭಾಗವಹಿಸುವಿಕೆಯ ವೇಗ',
+        'chart_risk': 'ಮತದಾರರ ಅಪಾಯದ ಅನುಪಾತಗಳು',
+        'tbl_state': 'ರಾಜ್ಯ',
+        'tbl_registered': 'ನೊಂದಾಯಿತ ಮತದಾರರು',
+        'tbl_current': 'ಪ್ರಸ್ತುತ ಮತದಾನ',
+        'tbl_historical': 'ಐತಿಹಾಸಿಕ ಸರಾಸರಿ',
+        'tbl_health': 'ಆರೋಗ್ಯ ಸ್ಕೋರ್',
+        'tbl_status': 'ಸ್ಥಿತಿ',
+        'tbl_zones': 'ಹೆಚ್ಚಿನ ಅಪಾಯದ ವಲಯಗಳು',
+        'no_data': 'ಯಾವುದೇ ಡೇಟಾ ಲಭ್ಯವಿಲ್ಲ. ದಯವಿಟ್ಟು ಡೇಟಾವನ್ನು ನಿರ್ವಹಣಾ ಫಲಕದಲ್ಲಿ ರಚಿಸಿ.'
+    }
+}
+
 def get_layout(lang='en'):
     # Load translation labels
     texts = config.LANGUAGES.get(lang, config.LANGUAGES['en'])
+    t = PAGE_TRANSLATIONS.get(lang, PAGE_TRANSLATIONS['en'])
     stats = data_service.get_national_stats()
     
     if not stats:
-        return html.Div("No data available. Please generate synthetic data in Admin panel.", style={'color': 'white', 'padding': '2rem'})
+        return html.Div(t['no_data'], style={'color': 'white', 'padding': '2rem'})
     
     # Live feed events
     feed_items = data_service.get_live_feed()
@@ -37,46 +125,46 @@ def get_layout(lang='en'):
     kpi_cards = html.Div([
         dbc.Row([
             dbc.Col(dbc.Card([
-                html.Div("National Election Pulse™", className="card-title-custom", style={'color': '#60A5FA'}),
+                html.Div(t['pulse'], className="card-title-custom", style={'color': '#60A5FA'}),
                 html.Div(f"{stats['pulse_score']}/100", className="card-value-custom", style={'color': '#60A5FA'}),
                 html.Div(stats['pulse_status'], style={'fontSize': '0.75rem', 'fontWeight': 'bold', 'color': '#22C55E' if stats['pulse_score'] >= 80 else '#FACC15'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Youth Participation Index™", className="card-title-custom", style={'color': '#FACC15'}),
+                html.Div(t['youth'], className="card-title-custom", style={'color': '#FACC15'}),
                 html.Div(f"{stats['ypi_score']}/100", className="card-value-custom", style={'color': '#FACC15'}),
                 html.Div(stats['ypi_status'], style={'fontSize': '0.75rem', 'fontWeight': 'bold', 'color': '#22C55E' if stats['ypi_score'] >= 75 else '#FACC15'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Current Turnout", className="card-title-custom"),
+                html.Div(t['current'], className="card-title-custom"),
                 html.Div(f"{stats['current_turnout']}%", className="card-value-custom"),
-                html.Div("Live progressive average", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['live_progressive'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Predicted Turnout", className="card-title-custom"),
+                html.Div(t['predicted'], className="card-title-custom"),
                 html.Div(f"{stats['predicted_turnout']}%", className="card-value-custom", style={'color': '#3B82F6'}),
-                html.Div("AI Forecast Final", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['forecast'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
         ], className="mb-3 g-3"),
         dbc.Row([
             dbc.Col(dbc.Card([
-                html.Div("Total Constituencies", className="card-title-custom"),
+                html.Div(t['total_const'], className="card-title-custom"),
                 html.Div(f"{stats['total_regions']}", className="card-value-custom"),
-                html.Div("Across 15 States", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['states_lbl'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Registered Voters", className="card-title-custom"),
+                html.Div(t['voters'], className="card-title-custom"),
                 html.Div(f"{stats['registered_voters']:,}", className="card-value-custom", style={'fontSize': '1.5rem'}),
-                html.Div("Active registrations", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['active_lbl'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Health Score (EHS)™", className="card-title-custom"),
+                html.Div(t['health'], className="card-title-custom"),
                 html.Div(f"{stats['health_score']}/100", className="card-value-custom", style={'color': '#22C55E' if stats['health_score'] >= 75 else '#FACC15'}),
-                html.Div("National Avg Health", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['health_lbl'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
             dbc.Col(dbc.Card([
-                html.Div("Active Alerts", className="card-title-custom"),
+                html.Div(t['alerts'], className="card-title-custom"),
                 html.Div(f"{stats['active_alerts']}", className="card-value-custom", style={'color': '#EF4444' if stats['active_alerts'] > 5 else '#FACC15'}),
-                html.Div("Risky constituencies", className="text-muted", style={'fontSize': '0.75rem'})
+                html.Div(t['alert_lbl'], className="text-muted", style={'fontSize': '0.75rem'})
             ], className="stat-card h-100")),
         ], className="mb-4 g-3")
     ])
@@ -94,7 +182,6 @@ def get_layout(lang='en'):
     avg_1pm = df['turnout_1pm'].mean()
     avg_3pm = df['turnout_3pm'].mean()
     avg_5pm = df['turnout_5pm'].mean()
-    avg_final = df['actual_final_turnout'].mean()
     
     # Add actual/historical benchmarks
     hist_avg = df['historical_turnout'].mean()
@@ -114,7 +201,7 @@ def get_layout(lang='en'):
     ))
     
     progression_fig.update_layout(
-        title=dict(text="Hourly Voter Turnout Progression Trend", font=dict(color='#F8FAFC', family='Poppins')),
+        title=dict(text=t['chart_progression'], font=dict(color='#F8FAFC', family='Poppins')),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color='#94A3B8'),
@@ -135,7 +222,7 @@ def get_layout(lang='en'):
         textfont=dict(color='#0B1220')
     )])
     risk_fig.update_layout(
-        title=dict(text="Voter Turnout Risk Proportions", font=dict(color='#F8FAFC', family='Poppins')),
+        title=dict(text=t['chart_risk'], font=dict(color='#F8FAFC', family='Poppins')),
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
         font=dict(color='#94A3B8'),
@@ -156,7 +243,7 @@ def get_layout(lang='en'):
     for idx, row in state_groups.iterrows():
         health = round(row['election_health_score'], 1)
         health_color = '#22C55E' if health >= 75 else '#FACC15'
-        risk_badge = html.Span(f"{row['risk_level']} High Risk Zones", 
+        risk_badge = html.Span(f"{row['risk_level']} {t['tbl_zones']}", 
                                className="badge bg-danger" if row['risk_level'] > 0 else "badge bg-success")
         
         table_rows.append(html.Tr([
@@ -170,8 +257,8 @@ def get_layout(lang='en'):
 
     state_table = dbc.Table([
         html.Thead(html.Tr([
-            html.Th("State"), html.Th("Registered Voters"), html.Th("Current Turnout"), 
-            html.Th("Historical Avg"), html.Th("Health Score"), html.Th("Status")
+            html.Th(t['tbl_state']), html.Th(t['tbl_registered']), html.Th(t['tbl_current']), 
+            html.Th(t['tbl_historical']), html.Th(t['tbl_health']), html.Th(t['tbl_status'])
         ]))] + [html.Tbody(table_rows)],
         className="table-custom",
         bordered=False,
@@ -199,7 +286,7 @@ def get_layout(lang='en'):
             
             dbc.Col([
                 html.Div([
-                    html.H5("Live Command Feed", className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+                    html.H5(t['live_feed'], className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
                     html.Div(feed_components, className="ticker-container")
                 ], className="stat-card mb-4", style={'height': 'calc(100% - 1.5rem)'})
             ], xl=4, lg=5, md=12)
@@ -214,7 +301,7 @@ def get_layout(lang='en'):
             
             dbc.Col([
                 html.Div([
-                    html.H5("State-Level Participation Matrix", className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+                    html.H5(t['matrix'], className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
                     state_table
                 ], className="stat-card mb-4", style={'height': 'calc(100% - 1.5rem)'})
             ], xl=8, lg=7, md=12)
