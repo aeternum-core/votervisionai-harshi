@@ -448,4 +448,12 @@ body {
     }
 }
 
+/* Audit Validation Boxes Contrast Adjustments */
+.audit-box,
+.audit-box p,
+.audit-box p strong {
+    color: var(--text-primary) !important;
+}
+
+
 

@@ -101,16 +101,16 @@ def get_layout(lang='en'):
                     html.H5("AI Core Validation Auditing", className="mb-4", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
                     
                     html.Label("Final Turnout Predictor (Regression)", className="form-label-custom"),
-                    html.Div(reg_metrics, className="p-3 mb-4 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem'}),
+                    html.Div(reg_metrics, className="audit-box p-3 mb-4 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem', 'color': '#F8FAFC'}),
                     
                     html.Label("Turnout Risk Classifier (Classification)", className="form-label-custom"),
-                    html.Div(clf_metrics, className="p-3 mb-4 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem'}),
+                    html.Div(clf_metrics, className="audit-box p-3 mb-4 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem', 'color': '#F8FAFC'}),
                     
                     html.Label("Database Storage Information", className="form-label-custom"),
                     html.Div([
                         html.P([html.Strong("Storage Location: "), f"{config.DATASET_PATH} (Local flat CSV Data Service Layer)"]),
                         html.P([html.Strong("Data Shape: "), f"{len(data_service.df) if not data_service.df.empty else 0} records × 27 columns"])
-                    ], className="p-3 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem'})
+                    ], className="audit-box p-3 rounded border border-secondary", style={'backgroundColor': '#0F1626', 'fontSize': '0.85rem', 'color': '#F8FAFC'})
                 ], className="stat-card p-4 h-100")
             ], lg=6, md=12, className="mb-4")
         ])
