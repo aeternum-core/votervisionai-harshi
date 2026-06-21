@@ -48,6 +48,48 @@ def get_layout(lang='en'):
             ], style={'fontSize': '0.9rem', 'lineHeight': '1.5', 'color': '#E2E8F0', 'margin': 0})
         ], className="stat-card p-4 mb-4"),
         
+        # Creator Profile & Core Features Card
+        dbc.Card([
+            dbc.Row([
+                dbc.Col([
+                    html.H5("Developer Profile", className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+                    html.Div([
+                        html.Div([
+                            html.Div("Harshitha C", style={'fontSize': '1.3rem', 'fontWeight': 'bold', 'color': '#60A5FA', 'fontFamily': 'Poppins'}),
+                            html.Div("Lead Architect & Developer", style={'fontSize': '0.85rem', 'color': '#94A3B8', 'fontWeight': '500', 'textTransform': 'uppercase', 'letterSpacing': '0.05em'})
+                        ], className="mb-3"),
+                        html.P("Harshitha C designed and developed the VoteVision AI platform to modernize election analytics. By blending machine learning models, descriptive data services, and explainable AI insights, the platform offers election organizers tools for predicting turnout anomalies and optimizing civic engagement strategies.", 
+                               style={'fontSize': '0.85rem', 'lineHeight': '1.5', 'color': '#E2E8F0'}),
+                        html.Div([
+                            html.Span("Python / Dash", className="badge bg-secondary me-2", style={'fontSize': '0.75rem'}),
+                            html.Span("Scikit-Learn ML", className="badge bg-secondary me-2", style={'fontSize': '0.75rem'}),
+                            html.Span("Data Visualization", className="badge bg-secondary", style={'fontSize': '0.75rem'})
+                        ], className="mt-3")
+                    ])
+                ], lg=5, md=12, className="border-end border-secondary pe-lg-4 mb-4 mb-lg-0"),
+                
+                dbc.Col([
+                    html.H5("Core Platform Features", className="mb-3", style={'fontFamily': 'Poppins', 'color': '#F8FAFC'}),
+                    dbc.Row([
+                        dbc.Col([
+                            html.Ul([
+                                html.Li([html.Strong("National Election Pulse™: "), "A live aggregate turnout health indicator (Pulse Score out of 100) combining forecasted risk scores and averages."], style={'fontSize': '0.8rem', 'color': '#E2E8F0', 'marginBottom': '0.5rem'}),
+                                html.Li([html.Strong("AI Turnout Forecasts: "), "Uses Random Forest Regressors to forecast final turnout and interactive Plotly speedometers to show prediction confidence."], style={'fontSize': '0.8rem', 'color': '#E2E8F0', 'marginBottom': '0.5rem'}),
+                                html.Li([html.Strong("Explainable AI (XAI) Panel: "), "Calculates local feature contribution drivers (transport accessibility, campaign boosts, holidays, weather) for trust validation."], style={'fontSize': '0.8rem', 'color': '#E2E8F0'})
+                            ], className="ps-3 mb-3 mb-md-0")
+                        ], md=6),
+                        dbc.Col([
+                            html.Ul([
+                                html.Li([html.Strong("What-If Simulator Sandbox: "), "Test adjustments to campaign intensity, transport, or weather comfort, with quick-apply presets (Torrential Rain, Holiday Drag)."], style={'fontSize': '0.8rem', 'color': '#E2E8F0', 'marginBottom': '0.5rem'}),
+                                html.Li([html.Strong("Election Strategy Advisor™: "), "Diagnoses local civic barriers and ranks constituencies in a prioritized strategy recommendation log."], style={'fontSize': '0.8rem', 'color': '#E2E8F0', 'marginBottom': '0.5rem'}),
+                                html.Li([html.Strong("AI Risk Intelligence: "), "Flags underperforming zones based on historical baseline deviations and registers them in a central operations log."], style={'fontSize': '0.8rem', 'color': '#E2E8F0'})
+                            ], className="ps-3")
+                        ], md=6)
+                    ])
+                ], lg=7, md=12, className="ps-lg-4")
+            ])
+        ], className="stat-card p-4 mb-4"),
+        
         dbc.Row([
             # Left: Stack & Formulas
             dbc.Col([
