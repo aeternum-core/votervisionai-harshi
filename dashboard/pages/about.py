@@ -58,7 +58,7 @@ def get_layout(lang='en'):
                             html.Div("Harshitha C", style={'fontSize': '1.3rem', 'fontWeight': 'bold', 'color': '#60A5FA', 'fontFamily': 'Poppins'}),
                             html.Div("Lead Architect & Developer", style={'fontSize': '0.85rem', 'color': '#94A3B8', 'fontWeight': '500', 'textTransform': 'uppercase', 'letterSpacing': '0.05em'})
                         ], className="mb-3"),
-                        html.P("Harshitha C designed and developed the VoteVision AI platform to modernize election analytics. By blending machine learning models, descriptive data services, and explainable AI insights, the platform offers election organizers tools for predicting turnout anomalies and optimizing civic engagement strategies.", 
+                        html.P("VoteVision AI is an advanced Election Decision Intelligence Platform designed to modernize election analytics through predictive and prescriptive intelligence. By combining machine learning, real-time data visualization, risk assessment models, and explainable AI, the platform enables election administrators to forecast voter turnout, identify participation risks, evaluate intervention strategies, and make data-driven decisions to improve civic engagement.", 
                                style={'fontSize': '0.85rem', 'lineHeight': '1.5', 'color': '#E2E8F0'}),
                         html.Div([
                             html.Span("Python / Dash", className="badge bg-secondary me-2", style={'fontSize': '0.75rem'}),
