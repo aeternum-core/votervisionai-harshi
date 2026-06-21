@@ -1,0 +1,33 @@
+{
+    "regression": {
+        "mae": 1.8471587838893866,
+        "rmse": 2.2802424444277203,
+        "r2": 0.8697291452031911,
+        "feature_importance": {
+            "historical_turnout": 0.848597862443481,
+            "literacy_rate": 0.016993035539174466,
+            "awareness_score": 0.014469702186156745,
+            "transport_accessibility": 0.012464744850534736,
+            "weather_score": 0.030042657564110453,
+            "campaign_intensity": 0.04268473343278799,
+            "holiday_factor": 0.03198827935378569,
+            "is_urban": 0.002758984629968933
+        }
+    },
+    "classification": {
+        "accuracy": 0.7517241379310344,
+        "precision": 0.3695652173913044,
+        "recall": 0.35108024691358025,
+        "f1_score": 0.32506061902724287,
+        "feature_importance": {
+            "historical_turnout": 0.11536219591304496,
+            "literacy_rate": 0.12571300587043174,
+            "awareness_score": 0.07284597403968891,
+            "transport_accessibility": 0.0935134927605682,
+            "weather_score": 0.154658012067158,
+            "campaign_intensity": 0.14397258122110884,
+            "holiday_factor": 0.27185880291389086,
+            "is_urban": 0.02207593521410851
+        }
+    }
+}

@@ -1,0 +1,367 @@
+/* VoteVision AI Command Center Custom Stylesheet */
+
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* CSS Variables */
+:root {
+    --bg-main: #0B1220;
+    --bg-card: #151F32;
+    --bg-card-hover: #1E2D4A;
+    --primary: #2563EB;
+    --primary-glow: rgba(37, 99, 235, 0.25);
+    --success: #22C55E;
+    --success-glow: rgba(34, 197, 94, 0.2);
+    --warning: #FACC15;
+    --warning-glow: rgba(250, 204, 21, 0.2);
+    --danger: #EF4444;
+    --danger-glow: rgba(239, 68, 68, 0.2);
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --border-color: #1E293B;
+}
+
+/* Global Reset */
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: 'Inter', 'Poppins', sans-serif !important;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Sidebar Custom Styling */
+.sidebar {
+    background-color: #060B13 !important;
+    border-right: 1px solid var(--border-color);
+    height: 100vh;
+    padding: 1.5rem 1rem;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #60A5FA, #2563EB);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-subtitle {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.5rem;
+    margin-bottom: 0.4rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.nav-link:hover {
+    background-color: var(--bg-card) !important;
+    color: var(--text-primary) !important;
+    transform: translateX(3px);
+}
+
+.nav-link.active {
+    background: linear-gradient(90deg, var(--primary), rgba(37, 99, 235, 0.4)) !important;
+    color: var(--text-primary) !important;
+    box-shadow: 0 4px 12px var(--primary-glow);
+}
+
+/* Dashboard Cards (Glassmorphism & Glows) */
+.stat-card {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0.75rem !important;
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary) !important;
+    box-shadow: 0 8px 24px var(--primary-glow);
+}
+
+.stat-card.risk-high {
+    border-left: 4px solid var(--danger) !important;
+}
+.stat-card.risk-high:hover {
+    border-color: var(--danger) !important;
+    box-shadow: 0 8px 24px var(--danger-glow);
+}
+
+.stat-card.risk-medium {
+    border-left: 4px solid var(--warning) !important;
+}
+.stat-card.risk-medium:hover {
+    border-color: var(--warning) !important;
+    box-shadow: 0 8px 24px var(--warning-glow);
+}
+
+.stat-card.risk-low {
+    border-left: 4px solid var(--success) !important;
+}
+.stat-card.risk-low:hover {
+    border-color: var(--success) !important;
+    box-shadow: 0 8px 24px var(--success-glow);
+}
+
+.card-title-custom {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.card-value-custom {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Alert Banner */
+.custom-alert {
+    background-color: rgba(239, 68, 68, 0.08) !important;
+    border: 1px solid rgba(239, 68, 68, 0.2) !important;
+    border-radius: 0.5rem !important;
+    color: #FCA5A5 !important;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+}
+
+/* Live Feed Ticker Styling */
+.ticker-container {
+    background-color: #060B13;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.ticker-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.6rem 0;
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticker-item:last-child {
+    border-bottom: none;
+}
+
+.badge-info {
+    background-color: rgba(6, 182, 212, 0.15);
+    color: #22D3EE;
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.badge-success {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #4ADE80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.badge-warning {
+    background-color: rgba(250, 204, 21, 0.15);
+    color: #FDE047;
+    border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.badge-danger {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #FCA5A5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Custom Sliders and Forms styling */
+.form-label-custom {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+}
+
+.rc-slider {
+    padding: 10px 0 !important;
+}
+
+.rc-slider-rail {
+    background-color: var(--border-color) !important;
+}
+
+.rc-slider-track {
+    background-color: var(--primary) !important;
+}
+
+.rc-slider-handle {
+    border: solid 2px var(--primary) !important;
+    background-color: var(--bg-card) !important;
+    opacity: 1 !important;
+}
+
+/* Custom Table View */
+.table-custom {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    font-size: 0.85rem;
+}
+
+.table-custom th {
+    background-color: #060B13;
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    font-weight: 600;
+    padding: 0.8rem;
+}
+
+.table-custom td {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.table-custom tr:hover {
+    background-color: var(--bg-card-hover);
+}
+
+/* Accessibility Overlay Style for low contrast/vision needs */
+.accessibility-bar {
+    background-color: #101B2E;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.4rem 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.8rem;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.2); }
+    50% { box-shadow: 0 0 16px rgba(37, 99, 235, 0.5); }
+    100% { box-shadow: 0 0 8px rgba(37, 99, 235, 0.2); }
+}
+
+.active-pulse {
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Multi-language Selector */
+.lang-selector {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+.lang-selector:focus {
+    outline: none;
+    border-color: var(--primary) !important;
+}
+
+/* --- Overflow & Dropdown Custom Styling --- */
+.overflow-visible {
+    overflow: visible !important;
+}
+
+/* dcc.Dropdown / React-Select Styling Overrides for Dark Mode */
+.Select-control {
+    background-color: #0F1626 !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    height: 38px !important;
+    border-radius: 0.375rem !important;
+}
+
+.Select-control:hover {
+    border-color: var(--primary) !important;
+}
+
+.Select-value-label,
+.Select-placeholder,
+.Select-input {
+    color: var(--text-primary) !important;
+    line-height: 36px !important;
+}
+
+.Select-input > input {
+    color: var(--text-primary) !important;
+}
+
+.Select-menu-outer {
+    background-color: #151F32 !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    z-index: 1050 !important;
+    border-radius: 0.375rem !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.Select-option,
+.VirtualizedSelectOption {
+    background-color: #151F32 !important;
+    color: var(--text-primary) !important;
+    padding: 8px 12px !important;
+    cursor: pointer;
+}
+
+.Select-option:hover,
+.Select-option.is-focused,
+.VirtualizedSelectFocusedOption {
+    background-color: var(--primary) !important;
+    color: #FFFFFF !important;
+}
+
+.Select-option.is-selected {
+    background-color: rgba(37, 99, 235, 0.3) !important;
+    color: var(--text-primary) !important;
+}
+
+.Select-arrow-zone,
+.Select-clear-zone {
+    color: var(--text-secondary) !important;
+}
+
+.Select-arrow-zone:hover,
+.Select-clear-zone:hover {
+    color: var(--text-primary) !important;
+}
+
+/* Adjust language selector dropdown wrapper */
+.lang-selector .Select-control {
+    height: 30px !important;
+    background-color: #151F32 !important;
+    border-radius: 0.25rem !important;
+}
+
+.lang-selector .Select-value-label,
+.lang-selector .Select-placeholder {
+    line-height: 28px !important;
+}
+
